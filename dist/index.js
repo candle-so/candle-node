@@ -42,11 +42,11 @@ var Candle = /** @class */ (function () {
         var _this = this;
         this.platforms = {
             checkCommunityMembership: function (_a) {
-                var userId = _a.userId;
+                var user_id = _a.user_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms/user/".concat(userId), method: "GET", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms/user/".concat(user_id), method: "GET", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -137,11 +137,11 @@ var Candle = /** @class */ (function () {
                 });
             },
             removePaymentMethod: function (_a) {
-                var userId = _a.userId, paymentMethodId = _a.paymentMethodId;
+                var user_id = _a.user_id, paymentMethod_id = _a.paymentMethod_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(userId, "/payment-methods/").concat(paymentMethodId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(user_id, "/payment-methods/").concat(paymentMethod_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -159,11 +159,11 @@ var Candle = /** @class */ (function () {
                 });
             },
             setDefaultPaymentMethod: function (_a) {
-                var id = _a.id, paymentMethodId = _a.paymentMethodId;
+                var id = _a.id, paymentMethod_id = _a.paymentMethod_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/payment-methods/").concat(paymentMethodId, "/default"), method: "PUT", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/payment-methods/").concat(paymentMethod_id, "/default"), method: "PUT", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -392,11 +392,11 @@ var Candle = /** @class */ (function () {
                 });
             }); },
             listAllUserServices: function (_a) {
-                var userId = _a.userId;
+                var user_id = _a.user_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "services/user/".concat(userId), method: "GET", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "services/user/".concat(user_id), method: "GET", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -526,11 +526,11 @@ var Candle = /** @class */ (function () {
                 });
             },
             retrieveCartByUserId: function (_a) {
-                var userId = _a.userId;
+                var user_id = _a.user_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/user/".concat(userId), method: "GET", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/user/".concat(user_id), method: "GET", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -559,11 +559,11 @@ var Candle = /** @class */ (function () {
                 });
             },
             removeItemFromCart: function (_a) {
-                var id = _a.id, itemId = _a.itemId;
+                var id = _a.id, item_id = _a.item_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/".concat(id, "/item/").concat(itemId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/".concat(id, "/item/").concat(item_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -634,33 +634,33 @@ var Candle = /** @class */ (function () {
                 });
             },
             createInvoiceFromCart: function (_a) {
-                var cartId = _a.cartId;
+                var cart_id = _a.cart_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/cart/".concat(cartId), method: "POST", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/cart/".concat(cart_id), method: "POST", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             createInvoiceFromSubscription: function (_a) {
-                var subscriptionId = _a.subscriptionId;
+                var subscription_id = _a.subscription_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/subscription/".concat(subscriptionId), method: "POST", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/subscription/".concat(subscription_id), method: "POST", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             createInvoiceFromCalendarEvent: function (_a) {
-                var calendarEventId = _a.calendarEventId;
+                var calendarEvent_id = _a.calendarEvent_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/event/".concat(calendarEventId), method: "POST", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/event/".concat(calendarEvent_id), method: "POST", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -716,11 +716,11 @@ var Candle = /** @class */ (function () {
                 });
             },
             removeItemFromInvoice: function (_a) {
-                var id = _a.id, itemId = _a.itemId;
+                var id = _a.id, item_id = _a.item_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/item/").concat(itemId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/item/").concat(item_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -738,11 +738,11 @@ var Candle = /** @class */ (function () {
                 });
             },
             removeSellerFromInvoice: function (_a) {
-                var id = _a.id, sellerId = _a.sellerId;
+                var id = _a.id, seller_id = _a.seller_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/seller/").concat(sellerId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/seller/").concat(seller_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -760,22 +760,22 @@ var Candle = /** @class */ (function () {
                 });
             },
             removeBuyerFromInvoice: function (_a) {
-                var id = _a.id, buyerId = _a.buyerId;
+                var id = _a.id, buyer_id = _a.buyer_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/buyer/").concat(buyerId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/buyer/").concat(buyer_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             modifyBuyerDueAmount: function (_a) {
-                var id = _a.id, buyerId = _a.buyerId, data = _a.data;
+                var id = _a.id, buyer_id = _a.buyer_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/buyer/").concat(buyerId, "/due-amount"), method: "PUT", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/buyer/").concat(buyer_id, "/due-amount"), method: "PUT", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -812,22 +812,22 @@ var Candle = /** @class */ (function () {
                 });
             },
             removeCustomFee: function (_a) {
-                var id = _a.id, feeId = _a.feeId;
+                var id = _a.id, fee_id = _a.fee_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/fee/").concat(feeId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/fee/").concat(fee_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             setFeeInclusion: function (_a) {
-                var id = _a.id, feeId = _a.feeId, data = _a.data;
+                var id = _a.id, fee_id = _a.fee_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/fee/").concat(feeId, "/include-fee"), method: "PUT", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "invoices/".concat(id, "/fee/").concat(fee_id, "/include-fee"), method: "PUT", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -858,11 +858,11 @@ var Candle = /** @class */ (function () {
         };
         this.calendars = {
             retrieveUserCalendarEvents: function (_a) {
-                var userId = _a.userId, month = _a.month, year = _a.year;
+                var user_id = _a.user_id, month = _a.month, year = _a.year;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/user/".concat(userId), method: "GET", data: { month: month, year: year }, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/user/".concat(user_id), method: "GET", data: { month: month, year: year }, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
@@ -880,121 +880,121 @@ var Candle = /** @class */ (function () {
                 });
             },
             retrieveEventFromCalendar: function (_a) {
-                var eventId = _a.eventId;
+                var event_id = _a.event_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId), method: "GET", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id), method: "GET", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             modifyEventInCalendar: function (_a) {
-                var eventId = _a.eventId, data = _a.data;
+                var event_id = _a.event_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId), method: "PUT", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id), method: "PUT", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             removeEventFromCalendar: function (_a) {
-                var eventId = _a.eventId;
+                var event_id = _a.event_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             addServiceToEvent: function (_a) {
-                var eventId = _a.eventId, data = _a.data;
+                var event_id = _a.event_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId, "/service"), method: "POST", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id, "/service"), method: "POST", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             removeServiceFromEvent: function (_a) {
-                var eventId = _a.eventId, serviceId = _a.serviceId;
+                var event_id = _a.event_id, service_id = _a.service_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId, "/service/").concat(serviceId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id, "/service/").concat(service_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             addProductToEvent: function (_a) {
-                var eventId = _a.eventId, data = _a.data;
+                var event_id = _a.event_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId, "/product"), method: "POST", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id, "/product"), method: "POST", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             removeProductFromEvent: function (_a) {
-                var eventId = _a.eventId, productId = _a.productId;
+                var event_id = _a.event_id, product_id = _a.product_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId, "/product/").concat(productId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id, "/product/").concat(product_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             addAttendeeToEvent: function (_a) {
-                var eventId = _a.eventId, data = _a.data;
+                var event_id = _a.event_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId, "/attendee"), method: "POST", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id, "/attendee"), method: "POST", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             removeAttendeeFromEvent: function (_a) {
-                var attendeeId = _a.attendeeId;
+                var attendee_id = _a.attendee_id;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/attendee/".concat(attendeeId), method: "DELETE", apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/attendee/".concat(attendee_id), method: "DELETE", apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             respondToEvent: function (_a) {
-                var eventId = _a.eventId, data = _a.data;
+                var event_id = _a.event_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId, "/respond"), method: "PUT", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id, "/respond"), method: "PUT", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });
                 });
             },
             addCommentToEvent: function (_a) {
-                var eventId = _a.eventId, data = _a.data;
+                var event_id = _a.event_id, data = _a.data;
                 return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_b) {
                         switch (_b.label) {
-                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(eventId, "/comment"), method: "POST", data: data, apiKey: this.apiKey })];
+                            case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/event/".concat(event_id, "/comment"), method: "POST", data: data, apiKey: this.apiKey })];
                             case 1: return [2 /*return*/, _b.sent()];
                         }
                     });

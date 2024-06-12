@@ -1,4 +1,4 @@
-# @candle/node
+# @candle-so/node
 
 A library for interacting with the Candle API.
 
@@ -28,13 +28,13 @@ A library for interacting with the Candle API.
 To install the SDK, use npm or yarn:
 
 ```sh
-npm install @candle/node
+npm install @candle-so/node
 ```
 
 or
 
 ```sh
-yarn add @candle/node
+yarn add @candle-so/node
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ yarn add @candle/node
 First, you need to initialize the Candle SDK with your API key:
 
 ```typescript
-import Candle from \"@candle/node\";
+import Candle from "@candle-so/node";
 
 const candle = Candle.init({ api_key: process.env.CANDLE_API_KEY });
 ```
@@ -56,7 +56,9 @@ const candle = Candle.init({ api_key: process.env.CANDLE_API_KEY });
 ##### Check Community Membership
 
 ```typescript
-const response = await candle.platforms.checkCommunityMembership({ userId: 'user_123e4567e89b12d3a456426614174000' });
+const response = await candle.platforms.checkCommunityMembership({ 
+  user_id: 'user_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 #### Users
@@ -65,26 +67,28 @@ const response = await candle.platforms.checkCommunityMembership({ userId: 'user
 
 ```typescript
 const response = await candle.users.createUser({
-    email: \"user@example.com\",
-  username: \"john_doe\",
-  bio: \"I am a software engineer.\"
+  email: "user@example.com",
+  username: "john_doe",
+  bio: "I am a software engineer."
 });
 ```
 
 ##### Retrieve a User
 
 ```typescript
-const response = await candle.users.retrieveUser({ id: 'user_123e4567e89b12d3a456426614174000' });
+const response = await candle.users.retrieveUser({ 
+  id: 'user_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Generate a Username
 
 ```typescript
 const response = await candle.users.generateUsername({
-    id: 'user_123e4567e89b12d3a456426614174000',
+  id: 'user_123e4567e89b12d3a456426614174000',
   data: {
-      email: \"user@example.com\",
-    name: \"John Doe\"
+    email: "user@example.com",
+    name: "John Doe"
   }
 });
 ```
@@ -93,9 +97,9 @@ const response = await candle.users.generateUsername({
 
 ```typescript
 const response = await candle.users.modifyUser({
-    id: 'user_123e4567e89b12d3a456426614174000',
+  id: 'user_123e4567e89b12d3a456426614174000',
   data: {
-      bio: \"Updated bio\"
+    bio: "Updated bio"
   }
 });
 ```
@@ -103,16 +107,18 @@ const response = await candle.users.modifyUser({
 ##### Schedule Deletion of a User
 
 ```typescript
-const response = await candle.users.scheduleDeletion({ id: 'user_123e4567e89b12d3a456426614174000' });
+const response = await candle.users.scheduleDeletion({ 
+  id: 'user_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Connect Bank Account with Stripe
 
 ```typescript
 const response = await candle.users.connectBankAccountWithStripe({
-    id: 'user_123e4567e89b12d3a456426614174000',
+  id: 'user_123e4567e89b12d3a456426614174000',
   data: {
-      bankAccountInfo: \"some bank account info\"
+    bankAccountInfo: "some bank account info"
   }
 });
 ```
@@ -120,16 +126,18 @@ const response = await candle.users.connectBankAccountWithStripe({
 ##### Retrieve Stripe Connect Account
 
 ```typescript
-const response = await candle.users.retrieveStripeConnectAccount({ id: 'user_123e4567e89b12d3a456426614174000' });
+const response = await candle.users.retrieveStripeConnectAccount({ 
+  id: 'user_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Get Client Secret
 
 ```typescript
 const response = await candle.users.getClientSecret({
-    id: 'user_123e4567e89b12d3a456426614174000',
+  id: 'user_123e4567e89b12d3a456426614174000',
   data: {
-      paymentIntentInfo: \"some payment intent info\"
+    paymentIntentInfo: "some payment intent info"
   }
 });
 ```
@@ -138,23 +146,25 @@ const response = await candle.users.getClientSecret({
 
 ```typescript
 const response = await candle.users.removePaymentMethod({
-    id: 'user_123e4567e89b12d3a456426614174000',
-  paymentMethodId: 'pm_123e4567e89b12d3a456426614174000'
+  id: 'user_123e4567e89b12d3a456426614174000',
+  paymentMethod_id: 'pm_123e4567e89b12d3a456426614174000'
 });
 ```
 
 ##### List Payment Methods
 
 ```typescript
-const response = await candle.users.listPaymentMethods({ id: 'user_123e4567e89b12d3a456426614174000' });
+const response = await candle.users.listPaymentMethods({ 
+  id: 'user_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Set Default Payment Method
 
 ```typescript
 const response = await candle.users.setDefaultPaymentMethod({
-    id: 'user_123e4567e89b12d3a456426614174000',
-  paymentMethodId: 'pm_123e4567e89b12d3a456426614174000',
+  id: 'user_123e4567e89b12d3a456426614174000',
+  paymentMethod_id: 'pm_123e4567e89b12d3a456426614174000',
   data: { default: true }
 });
 ```
@@ -163,7 +173,7 @@ const response = await candle.users.setDefaultPaymentMethod({
 
 ```typescript
 const response = await candle.users.authoriseFutureCharges({
-    id: 'user_123e4567e89b12d3a456426614174000',
+  id: 'user_123e4567e89b12d3a456426614174000',
   data: { authorize: true }
 });
 ```
@@ -172,7 +182,7 @@ const response = await candle.users.authoriseFutureCharges({
 
 ```typescript
 const response = await candle.users.deauthoriseFutureCharges({
-    id: 'user_123e4567e89b12d3a456426614174000',
+  id: 'user_123e4567e89b12d3a456426614174000',
   data: { authorize: false }
 });
 ```
@@ -183,51 +193,55 @@ const response = await candle.users.deauthoriseFutureCharges({
 
 ```typescript
 const response = await candle.contacts.addUserAsContact({
-    name: \"Jane Doe\",
-  email: \"contact@example.com\",
-  phone: \"+1234567890\"
+  name: "Jane Doe",
+  email: "contact@example.com",
+  phone: "+1234567890"
 });
 ```
 
 ##### List Contacts
 
 ```typescript
-const response = await candle.contacts.listContacts({ id: 'user_123e4567e89b12d3a456426614174000' });
+const response = await candle.contacts.listContacts({ 
+  id: 'user_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Search Contacts
 
 ```typescript
-const response = await candle.contacts.searchContacts({ q: \"Jane\" });
+  const response = await candle.contacts.searchContacts({ q: "Jane" });
 ```
 
 ##### Find Contact by Email
 
 ```typescript
-const response = await candle.contacts.findContactByEmail({ email: \"contact@example.com\" });
+  const response = await candle.contacts.findContactByEmail({ email: "contact@example.com" });
 ```
 
 ##### Modify a Contact
 
 ```typescript
 const response = await candle.contacts.modifyContact({
-    id: 'cont_123e4567e89b12d3a456426614174000',
-  data: { phone: \"+0987654321\" }
+  id: 'cont_123e4567e89b12d3a456426614174000',
+  data: { phone: "+0987654321" }
 });
 ```
 
 ##### Delete a Contact
 
 ```typescript
-const response = await candle.contacts.deleteContact({ id: 'cont_123e4567e89b12d3a456426614174000' });
+const response = await candle.contacts.deleteContact({ 
+  id: 'cont_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Special Price on Product
 
 ```typescript
 const response = await candle.contacts.specialPriceOnProduct({
-    id: 'cont_123e4567e89b12d3a456426614174000',
-  data: { productId: 'prod_123e4567e89b12d3a456426614174000', specialPrice: 80 }
+  id: 'cont_123e4567e89b12d3a456426614174000',
+  data: { product_id: 'prod_123e4567e89b12d3a456426614174000', specialPrice: 80 }
 });
 ```
 
@@ -237,8 +251,8 @@ const response = await candle.contacts.specialPriceOnProduct({
 
 ```typescript
 const response = await candle.products.createProduct({
-    name: \"Sample Product\",
-  description: \"This is a sample product.\",
+  name: "Sample Product",
+  description: "This is a sample product.",
   price: 29.99
 });
 ```
@@ -252,20 +266,24 @@ const response = await candle.products.listAllProducts();
 ##### Retrieve a Product by ID
 
 ```typescript
-const response = await candle.products.retrieveProductById({ id: 'prod_123e4567e89b12d3a456426614174000' });
+const response = await candle.products.retrieveProductById({ 
+  id: 'prod_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Retrieve Prices for a Product
 
 ```typescript
-const response = await candle.products.retrievePricesForProduct({ id: 'prod_123e4567e89b12d3a456426614174000' });
+const response = await candle.products.retrievePricesForProduct({ 
+  id: 'prod_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Modify a Product
 
 ```typescript
 const response = await candle.products.modifyProduct({
-    id: 'prod_123e4567e89b12d3a456426614174000',
+  id: 'prod_123e4567e89b12d3a456426614174000',
   data: { price: 24.99 }
 });
 ```
@@ -273,7 +291,9 @@ const response = await candle.products.modifyProduct({
 ##### Delete a Product
 
 ```typescript
-const response = await candle.products.deleteProduct({ id: 'prod_123e4567e89b12d3a456426614174000' });
+const response = await candle.products.deleteProduct({ 
+  id: 'prod_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 #### Services
@@ -282,8 +302,8 @@ const response = await candle.products.deleteProduct({ id: 'prod_123e4567e89b12d
 
 ```typescript
 const response = await candle.services.createService({
-    name: \"Sample Service\",
-  description: \"This is a sample service.\",
+  name: "Sample Service",
+  description: "This is a sample service.",
   price: 100
 });
 ```
@@ -291,20 +311,22 @@ const response = await candle.services.createService({
 ##### List All User's Services
 
 ```typescript
-const response = await candle.services.listAllUserServices({ userId: 'user_123e4567e89b12d3a456426614174000' });
+const response = await candle.services.listAllUserServices({ user_id: 'user_123e4567e89b12d3a456426614174000' });
 ```
 
 ##### Retrieve a Service by ID
 
 ```typescript
-const response = await candle.services.retrieveServiceById({ id: 'serv_123e4567e89b12d3a456426614174000' });
+const response = await candle.services.retrieveServiceById({ 
+  id: 'serv_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Modify a Service
 
 ```typescript
 const response = await candle.services.modifyService({
-    id: 'serv_123e4567e89b12d3a456426614174000',
+  id: 'serv_123e4567e89b12d3a456426614174000',
   data: { price: 80 }
 });
 ```
@@ -312,7 +334,9 @@ const response = await candle.services.modifyService({
 ##### Delete a Service
 
 ```typescript
-const response = await candle.services.deleteService({ id: 'serv_123e4567e89b12d3a456426614174000' });
+const response = await candle.services.deleteService({ 
+  id: 'serv_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 #### Carts
@@ -321,8 +345,8 @@ const response = await candle.services.deleteService({ id: 'serv_123e4567e89b12d
 
 ```typescript
 const response = await candle.carts.addProductToCart({
-    id: 'cart_123e4567e89b12d3a456426614174000',
-  productId: 'prod_123e4567e89b12d3a456426614174000',
+  id: 'cart_123e4567e89b12d3a456426614174000',
+  product_id: 'prod_123e4567e89b12d3a456426614174000',
   quantity: 2
 });
 ```
@@ -330,20 +354,24 @@ const response = await candle.carts.addProductToCart({
 ##### Retrieve a Cart by ID
 
 ```typescript
-const response = await candle.carts.retrieveCartById({ id: 'cart_123e4567e89b12d3a456426614174000' });
+const response = await candle.carts.retrieveCartById({ 
+  id: 'cart_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Clear a Cart
 
 ```typescript
-const response = await candle.carts.clearCart({ id: 'cart_123e4567e89b12d3a456426614174000' }); 
+const response = await candle.carts.clearCart({ 
+  id: 'cart_123e4567e89b12d3a456426614174000' }
+); 
 ```
 
 ##### Modify a Cart
 
 ```typescript
 const response = await candle.carts.modifyCart({
-    id: 'cart_123e4567e89b12d3a456426614174000',
+  id: 'cart_123e4567e89b12d3a456426614174000',
   data: { quantity: 3 }
 });
 ```
@@ -352,9 +380,8 @@ const response = await candle.carts.modifyCart({
 
 ```typescript
 const response = await candle.carts.removeItemFromCart({
-    id: 'cart_123e4567e89b12d3a456426614174000',
-  itemId: 'item_123e4567e89b12d3a456426614174000'
-  
+  id: 'cart_123e4567e89b12d3a456426614174000',
+  item_id: 'item_123e4567e89b12d3a456426614174000'
 });
 ```
 
@@ -364,28 +391,33 @@ const response = await candle.carts.removeItemFromCart({
 
 ```typescript
 const response = await candle.subscriptions.subscribeToService({
-    serviceId: 'serv_123e4567e89b12d3a456426614174000',
-  userId: 'user_123e4567e89b12d3a456426614174000'
-  
+  service_id: 'serv_123e4567e89b12d3a456426614174000',
+  user_id: 'user_123e4567e89b12d3a456426614174000'
 });
 ```
 
 ##### Pause a Subscription
 
 ```typescript
-const response = await candle.subscriptions.pauseSubscription({ id: 'subs_123e4567e89b12d3a456426614174000' });
+const response = await candle.subscriptions.pauseSubscription({ 
+  id: 'subs_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Resume a Subscription
 
 ```typescript
-const response = await candle.subscriptions.resumeSubscription({ id: 'subs_123e4567e89b12d3a456426614174000' });
+const response = await candle.subscriptions.resumeSubscription({ 
+  id: 'subs_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Unsubscribe from a Service
 
 ```typescript
-const response = await candle.subscriptions.unsubscribeFromService({ id: 'subs_123e4567e89b12d3a456426614174000' });
+const response = await candle.subscriptions.unsubscribeFromService({ 
+  id: 'subs_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 #### Invoices
@@ -394,24 +426,25 @@ const response = await candle.subscriptions.unsubscribeFromService({ id: 'subs_1
 
 ```typescript
 const response = await candle.invoices.createInvoice({
-    items: [
-      { productId: 'prod_123e4567e89b12d3a456426614174000', quantity: 1, price: 100 }
-  
-  ]
+  items: [{ 
+    product_id: 'prod_123e4567e89b12d3a456426614174000', quantity: 1, price: 100 
+  }]
 });
 ```
 
 ##### Retrieve an Invoice
 
 ```typescript
-const response = await candle.invoices.retrieveInvoice({ id: 'inv_123e4567e89b12d3a456426614174000' });
+const response = await candle.invoices.retrieveInvoice({ 
+  id: 'inv_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Modify an Invoice
 
 ```typescript
 const response = await candle.invoices.modifyInvoice({
-    id: 'inv_123e4567e89b12d3a456426614174000',
+  id: 'inv_123e4567e89b12d3a456426614174000',
   data: { total: 120 }
 });
 ```
@@ -420,16 +453,17 @@ const response = await candle.invoices.modifyInvoice({
 
 ```typescript
 const response = await candle.invoices.removeItemFromInvoice({
-    id: 'inv_123e4567e89b12d3a456426614174000',
-  itemId: 'item_123e4567e89b12d3a456426614174000'
-  
+  id: 'inv_123e4567e89b12d3a456426614174000',
+  item_id: 'item_123e4567e89b12d3a456426614174000'
 });
 ```
 
 ##### Settle an Invoice
 
 ```typescript
-const response = await candle.invoices.settleInvoice({ id: 'inv_123e4567e89b12d3a456426614174000' });
+const response = await candle.invoices.settleInvoice({ 
+  id: 'inv_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 #### Calendars
@@ -438,13 +472,12 @@ const response = await candle.invoices.settleInvoice({ id: 'inv_123e4567e89b12d3
 
 ```typescript
 const response = await candle.calendars.addEventToCalendar({
-    id: 'cal_123e4567e89b12d3a456426614174000',
+  id: 'cal_123e4567e89b12d3a456426614174000',
   event: {
-      title: \"Meeting\",
-    description: \"Project discussion\",
-    startTime: \"2023-06-21T10:00:00Z\",
-    endTime: \"2023-06-21T11:00:00Z\"
-  
+    title: "Meeting",
+    description: "Project discussion",
+    startTime: "2023-06-21T10:00:00Z",
+    endTime: "2023-06-21T11:00:00Z"
   }
 });
 ```
@@ -452,22 +485,22 @@ const response = await candle.calendars.addEventToCalendar({
 ##### Retrieve a Calendar Event
 
 ```typescript
-const response = await candle.calendars.retrieveCalendarEvent({ eventId: 'calev_123e4567e89b12d3a456426614174000' });
+const response = await candle.calendars.retrieveCalendarEvent({ event_id: 'calev_123e4567e89b12d3a456426614174000' });
 ```
 
 ##### Modify a Calendar Event
 
 ```typescript
 const response = await candle.calendars.modifyCalendarEvent({
-    eventId: 'calev_123e4567e89b12d3a456426614174000',
-  data: { title: \"Updated Meeting\" }
+  event_id: 'calev_123e4567e89b12d3a456426614174000',
+  data: { title: "Updated Meeting" }
 });
 ```
 
 ##### Remove a Calendar Event
 
 ```typescript
-const response = await candle.calendars.removeCalendarEvent({ eventId: 'calev_123e4567e89b12d3a456426614174000' });
+const response = await candle.calendars.removeCalendarEvent({ event_id: 'calev_123e4567e89b12d3a456426614174000' });
 ```
 
 #### Transactions
@@ -495,7 +528,7 @@ const response = await candle.transactions.retrievePlatformRevenue();
 ##### Add Person to Waitlist
 
 ```typescript
-const response = await candle.waitlists.addPersonToWaitlist({ email: \"waitlist@example.com\", name: \"John Doe\" });
+  const response = await candle.waitlists.addPersonToWaitlist({ email: "waitlist@example.com", name: "John Doe" });
 ```
 
 ##### Count People in Waitlist
@@ -513,13 +546,17 @@ const response = await candle.waitlists.listAllInWaitlist();
 ##### Remove from Waitlist
 
 ```typescript
-const response = await candle.waitlists.removeFromWaitlist({ id: 'wlist_123e4567e89b12d3a456426614174000' });
+const response = await candle.waitlists.removeFromWaitlist({ 
+  id: 'wlist_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Grant Access to Platform
 
 ```typescript
-const response = await candle.waitlists.grantAccessToPlatform({ id: 'wlist_123e4567e89b12d3a456426614174000' });
+const response = await candle.waitlists.grantAccessToPlatform({ 
+  id: 'wlist_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 #### Webhooks
@@ -528,9 +565,8 @@ const response = await candle.waitlists.grantAccessToPlatform({ id: 'wlist_123e4
 
 ```typescript
 const response = await candle.webhooks.createWebhookEndpoint({
-    url: \"https://example.com/webhooks/order-created\",
-  onEvent: \"create\"
-  
+  url: "https://example.com/webhooks/order-created",
+  onEvent: "create"
 });
 ```
 
@@ -538,8 +574,8 @@ const response = await candle.webhooks.createWebhookEndpoint({
 
 ```typescript
 const response = await candle.webhooks.modifyWebhookEndpoint({
-    id: 'hook_123e4567e89b12d3a456426614174000',
-  data: { url: \"https://example.com/webhooks/order-updated\" }
+  id: 'hook_123e4567e89b12d3a456426614174000',
+  data: { url: "https://example.com/webhooks/order-updated" }
 });
 ```
 
@@ -552,13 +588,17 @@ const response = await candle.webhooks.listAllWebhookEndpoints();
 ##### Retrieve a Webhook Endpoint
 
 ```typescript
-const response = await candle.webhooks.retrieveWebhookEndpoint({ id: 'hook_123e4567e89b12d3a456426614174000' });
+const response = await candle.webhooks.retrieveWebhookEndpoint({ 
+  id: 'hook_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ##### Delete a Webhook Endpoint
 
 ```typescript
-const response = await candle.webhooks.deleteWebhookEndpoint({ id: 'hook_123e4567e89b12d3a456426614174000' });
+const response = await candle.webhooks.deleteWebhookEndpoint({ 
+  id: 'hook_123e4567e89b12d3a456426614174000' 
+});
 ```
 
 ## Contributing

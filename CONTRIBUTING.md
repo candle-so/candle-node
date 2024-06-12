@@ -1,4 +1,4 @@
-# Contributing to @candle/node
+# Contributing to @candle-so/node
 
 We welcome contributions from the community! Whether it's bug fixes, new features, or improvements to the documentation, your help is appreciated. Please follow these guidelines to contribute to the project.
 
@@ -64,4 +64,4 @@ When submitting a pull request:
 3. Reference any related issues in the pull request description.
 4. Ensure your code passes existing tests and includes new tests for any new functionality.
 
-Thank you for contributing to @candle/node!
+Thank you for contributing to @candle-so/node!

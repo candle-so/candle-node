@@ -5,8 +5,8 @@ declare class Candle {
         api_key: string;
     }): Candle;
     platforms: {
-        checkCommunityMembership: ({ userId }: {
-            userId: string;
+        checkCommunityMembership: ({ user_id }: {
+            user_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
     };
     users: {
@@ -39,16 +39,16 @@ declare class Candle {
         getClientSecret: ({ id }: {
             id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removePaymentMethod: ({ userId, paymentMethodId }: {
-            userId: string;
-            paymentMethodId: string;
+        removePaymentMethod: ({ user_id, paymentMethod_id }: {
+            user_id: string;
+            paymentMethod_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
         listPaymentMethods: ({ id }: {
             id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        setDefaultPaymentMethod: ({ id, paymentMethodId }: {
+        setDefaultPaymentMethod: ({ id, paymentMethod_id }: {
             id: string;
-            paymentMethodId: string;
+            paymentMethod_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
         authoriseFutureCharges: ({ id }: {
             id: string;
@@ -116,8 +116,8 @@ declare class Candle {
     };
     services: {
         createService: (data: any) => Promise<import("./_axios").iAxiosResponse>;
-        listAllUserServices: ({ userId }: {
-            userId: string;
+        listAllUserServices: ({ user_id }: {
+            user_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
         retrieveServiceById: ({ id }: {
             id: string;
@@ -159,8 +159,8 @@ declare class Candle {
         retrieveCartById: ({ id }: {
             id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveCartByUserId: ({ userId }: {
-            userId: string;
+        retrieveCartByUserId: ({ user_id }: {
+            user_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
         clearCart: ({ id }: {
             id: string;
@@ -169,9 +169,9 @@ declare class Candle {
             id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeItemFromCart: ({ id, itemId }: {
+        removeItemFromCart: ({ id, item_id }: {
             id: string;
-            itemId: string;
+            item_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
     };
     subscriptions: {
@@ -192,14 +192,14 @@ declare class Candle {
             id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        createInvoiceFromCart: ({ cartId }: {
-            cartId: string;
+        createInvoiceFromCart: ({ cart_id }: {
+            cart_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        createInvoiceFromSubscription: ({ subscriptionId }: {
-            subscriptionId: string;
+        createInvoiceFromSubscription: ({ subscription_id }: {
+            subscription_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        createInvoiceFromCalendarEvent: ({ calendarEventId }: {
-            calendarEventId: string;
+        createInvoiceFromCalendarEvent: ({ calendarEvent_id }: {
+            calendarEvent_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
         retrieveUserReceivedInvoices: () => Promise<import("./_axios").iAxiosResponse>;
         retrieveUserSentInvoices: () => Promise<import("./_axios").iAxiosResponse>;
@@ -213,29 +213,29 @@ declare class Candle {
             id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeItemFromInvoice: ({ id, itemId }: {
+        removeItemFromInvoice: ({ id, item_id }: {
             id: string;
-            itemId: string;
+            item_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
         addSellerToInvoice: ({ id, data }: {
             id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeSellerFromInvoice: ({ id, sellerId }: {
+        removeSellerFromInvoice: ({ id, seller_id }: {
             id: string;
-            sellerId: string;
+            seller_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
         addBuyerToInvoice: ({ id, data }: {
             id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeBuyerFromInvoice: ({ id, buyerId }: {
+        removeBuyerFromInvoice: ({ id, buyer_id }: {
             id: string;
-            buyerId: string;
+            buyer_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        modifyBuyerDueAmount: ({ id, buyerId, data }: {
+        modifyBuyerDueAmount: ({ id, buyer_id, data }: {
             id: string;
-            buyerId: string;
+            buyer_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
         estimateFees: (data: any) => Promise<import("./_axios").iAxiosResponse>;
@@ -246,13 +246,13 @@ declare class Candle {
         updateFeesForInvoice: ({ id }: {
             id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeCustomFee: ({ id, feeId }: {
+        removeCustomFee: ({ id, fee_id }: {
             id: string;
-            feeId: string;
+            fee_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        setFeeInclusion: ({ id, feeId, data }: {
+        setFeeInclusion: ({ id, fee_id, data }: {
             id: string;
-            feeId: string;
+            fee_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
         settleInvoice: ({ id }: {
@@ -264,8 +264,8 @@ declare class Candle {
         }) => Promise<import("./_axios").iAxiosResponse>;
     };
     calendars: {
-        retrieveUserCalendarEvents: ({ userId, month, year }: {
-            userId: string;
+        retrieveUserCalendarEvents: ({ user_id, month, year }: {
+            user_id: string;
             month: number;
             year: number;
         }) => Promise<import("./_axios").iAxiosResponse>;
@@ -273,45 +273,45 @@ declare class Candle {
             id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveEventFromCalendar: ({ eventId }: {
-            eventId: string;
+        retrieveEventFromCalendar: ({ event_id }: {
+            event_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        modifyEventInCalendar: ({ eventId, data }: {
-            eventId: string;
+        modifyEventInCalendar: ({ event_id, data }: {
+            event_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeEventFromCalendar: ({ eventId }: {
-            eventId: string;
+        removeEventFromCalendar: ({ event_id }: {
+            event_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        addServiceToEvent: ({ eventId, data }: {
-            eventId: string;
+        addServiceToEvent: ({ event_id, data }: {
+            event_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeServiceFromEvent: ({ eventId, serviceId }: {
-            eventId: string;
-            serviceId: string;
+        removeServiceFromEvent: ({ event_id, service_id }: {
+            event_id: string;
+            service_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        addProductToEvent: ({ eventId, data }: {
-            eventId: string;
+        addProductToEvent: ({ event_id, data }: {
+            event_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeProductFromEvent: ({ eventId, productId }: {
-            eventId: string;
-            productId: string;
+        removeProductFromEvent: ({ event_id, product_id }: {
+            event_id: string;
+            product_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        addAttendeeToEvent: ({ eventId, data }: {
-            eventId: string;
+        addAttendeeToEvent: ({ event_id, data }: {
+            event_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        removeAttendeeFromEvent: ({ attendeeId }: {
-            attendeeId: string;
+        removeAttendeeFromEvent: ({ attendee_id }: {
+            attendee_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        respondToEvent: ({ eventId, data }: {
-            eventId: string;
+        respondToEvent: ({ event_id, data }: {
+            event_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
-        addCommentToEvent: ({ eventId, data }: {
-            eventId: string;
+        addCommentToEvent: ({ event_id, data }: {
+            event_id: string;
             data: any;
         }) => Promise<import("./_axios").iAxiosResponse>;
         setAvailabilityByDayOfWeek: ({ dayOfWeek, data }: {

@@ -12,8 +12,8 @@ class Candle {
   }
 
   platforms = {
-    checkCommunityMembership: async ({ userId }: { userId: string }) => {
-      return await axiosWrapper({ url: `platforms/user/${userId}`, method: "GET", apiKey: this.apiKey });
+    checkCommunityMembership: async ({ user_id}: { user_id: string }) => {
+      return await axiosWrapper({ url: `platforms/user/${user_id}`, method: "GET", apiKey: this.apiKey });
     },
   };
 
@@ -42,14 +42,14 @@ class Candle {
     getClientSecret: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `users/${id}/client-secret`, method: "POST", apiKey: this.apiKey });
     },
-    removePaymentMethod: async ({ userId, paymentMethodId }: { userId: string; paymentMethodId: string }) => {
-      return await axiosWrapper({ url: `users/${userId}/payment-methods/${paymentMethodId}`, method: "DELETE", apiKey: this.apiKey });
+    removePaymentMethod: async ({ user_id, paymentMethod_id}: { user_id: string; paymentMethod_id: string }) => {
+      return await axiosWrapper({ url: `users/${user_id}/payment-methods/${paymentMethod_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     listPaymentMethods: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `users/${id}/payment-methods`, method: "GET", apiKey: this.apiKey });
     },
-    setDefaultPaymentMethod: async ({ id, paymentMethodId }: { id: string; paymentMethodId: string }) => {
-      return await axiosWrapper({ url: `users/${id}/payment-methods/${paymentMethodId}/default`, method: "PUT", apiKey: this.apiKey });
+    setDefaultPaymentMethod: async ({ id, paymentMethod_id}: { id: string; paymentMethod_id: string }) => {
+      return await axiosWrapper({ url: `users/${id}/payment-methods/${paymentMethod_id}/default`, method: "PUT", apiKey: this.apiKey });
     },
     authoriseFutureCharges: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `users/${id}/permissions/charge`, method: "POST", apiKey: this.apiKey });
@@ -123,8 +123,8 @@ class Candle {
     createService: async (data: any) => {
       return await axiosWrapper({ url: `services`, method: "POST", data, apiKey: this.apiKey });
     },
-    listAllUserServices: async ({ userId }: { userId: string }) => {
-      return await axiosWrapper({ url: `services/user/${userId}`, method: "GET", apiKey: this.apiKey });
+    listAllUserServices: async ({ user_id}: { user_id: string }) => {
+      return await axiosWrapper({ url: `services/user/${user_id}`, method: "GET", apiKey: this.apiKey });
     },
     retrieveServiceById: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `services/${id}`, method: "GET", apiKey: this.apiKey });
@@ -162,8 +162,8 @@ class Candle {
     retrieveCartById: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `carts/${id}`, method: "GET", apiKey: this.apiKey });
     },
-    retrieveCartByUserId: async ({ userId }: { userId: string }) => {
-      return await axiosWrapper({ url: `carts/user/${userId}`, method: "GET", apiKey: this.apiKey });
+    retrieveCartByUserId: async ({ user_id}: { user_id: string }) => {
+      return await axiosWrapper({ url: `carts/user/${user_id}`, method: "GET", apiKey: this.apiKey });
     },
     clearCart: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `carts/${id}/clear`, method: "DELETE", apiKey: this.apiKey });
@@ -171,8 +171,8 @@ class Candle {
     modifyCart: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `carts/${id}`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeItemFromCart: async ({ id, itemId }: { id: string; itemId: string }) => {
-      return await axiosWrapper({ url: `carts/${id}/item/${itemId}`, method: "DELETE", apiKey: this.apiKey });
+    removeItemFromCart: async ({ id, item_id}: { id: string; item_id: string }) => {
+      return await axiosWrapper({ url: `carts/${id}/item/${item_id}`, method: "DELETE", apiKey: this.apiKey });
     },
   };
 
@@ -198,14 +198,14 @@ class Candle {
     addItemToInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}/items`, method: "POST", data, apiKey: this.apiKey });
     },
-    createInvoiceFromCart: async ({ cartId }: { cartId: string }) => {
-      return await axiosWrapper({ url: `invoices/cart/${cartId}`, method: "POST", apiKey: this.apiKey });
+    createInvoiceFromCart: async ({ cart_id}: { cart_id: string }) => {
+      return await axiosWrapper({ url: `invoices/cart/${cart_id}`, method: "POST", apiKey: this.apiKey });
     },
-    createInvoiceFromSubscription: async ({ subscriptionId }: { subscriptionId: string }) => {
-      return await axiosWrapper({ url: `invoices/subscription/${subscriptionId}`, method: "POST", apiKey: this.apiKey });
+    createInvoiceFromSubscription: async ({ subscription_id}: { subscription_id: string }) => {
+      return await axiosWrapper({ url: `invoices/subscription/${subscription_id}`, method: "POST", apiKey: this.apiKey });
     },
-    createInvoiceFromCalendarEvent: async ({ calendarEventId }: { calendarEventId: string }) => {
-      return await axiosWrapper({ url: `invoices/event/${calendarEventId}`, method: "POST", apiKey: this.apiKey });
+    createInvoiceFromCalendarEvent: async ({ calendarEvent_id}: { calendarEvent_id: string }) => {
+      return await axiosWrapper({ url: `invoices/event/${calendarEvent_id}`, method: "POST", apiKey: this.apiKey });
     },
     retrieveUserReceivedInvoices: async () => {
       return await axiosWrapper({ url: `invoices/buyer`, method: "GET", apiKey: this.apiKey });
@@ -222,23 +222,23 @@ class Candle {
     modifyInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeItemFromInvoice: async ({ id, itemId }: { id: string; itemId: string }) => {
-      return await axiosWrapper({ url: `invoices/${id}/item/${itemId}`, method: "DELETE", apiKey: this.apiKey });
+    removeItemFromInvoice: async ({ id, item_id}: { id: string; item_id: string }) => {
+      return await axiosWrapper({ url: `invoices/${id}/item/${item_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     addSellerToInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}/seller`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeSellerFromInvoice: async ({ id, sellerId }: { id: string; sellerId: string }) => {
-      return await axiosWrapper({ url: `invoices/${id}/seller/${sellerId}`, method: "DELETE", apiKey: this.apiKey });
+    removeSellerFromInvoice: async ({ id, seller_id}: { id: string; seller_id: string }) => {
+      return await axiosWrapper({ url: `invoices/${id}/seller/${seller_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     addBuyerToInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}/buyer`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeBuyerFromInvoice: async ({ id, buyerId }: { id: string; buyerId: string }) => {
-      return await axiosWrapper({ url: `invoices/${id}/buyer/${buyerId}`, method: "DELETE", apiKey: this.apiKey });
+    removeBuyerFromInvoice: async ({ id, buyer_id}: { id: string; buyer_id: string }) => {
+      return await axiosWrapper({ url: `invoices/${id}/buyer/${buyer_id}`, method: "DELETE", apiKey: this.apiKey });
     },
-    modifyBuyerDueAmount: async ({ id, buyerId, data }: { id: string; buyerId: string; data: any }) => {
-      return await axiosWrapper({ url: `invoices/${id}/buyer/${buyerId}/due-amount`, method: "PUT", data, apiKey: this.apiKey });
+    modifyBuyerDueAmount: async ({ id, buyer_id, data }: { id: string; buyer_id: string; data: any }) => {
+      return await axiosWrapper({ url: `invoices/${id}/buyer/${buyer_id}/due-amount`, method: "PUT", data, apiKey: this.apiKey });
     },
     estimateFees: async (data: any) => {
       return await axiosWrapper({ url: `invoices/estimate-fees`, method: "GET", data, apiKey: this.apiKey });
@@ -249,11 +249,11 @@ class Candle {
     updateFeesForInvoice: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `invoices/${id}/fee`, method: "PUT", apiKey: this.apiKey });
     },
-    removeCustomFee: async ({ id, feeId }: { id: string; feeId: string }) => {
-      return await axiosWrapper({ url: `invoices/${id}/fee/${feeId}`, method: "DELETE", apiKey: this.apiKey });
+    removeCustomFee: async ({ id, fee_id}: { id: string; fee_id: string }) => {
+      return await axiosWrapper({ url: `invoices/${id}/fee/${fee_id}`, method: "DELETE", apiKey: this.apiKey });
     },
-    setFeeInclusion: async ({ id, feeId, data }: { id: string; feeId: string; data: any }) => {
-      return await axiosWrapper({ url: `invoices/${id}/fee/${feeId}/include-fee`, method: "PUT", data, apiKey: this.apiKey });
+    setFeeInclusion: async ({ id, fee_id, data }: { id: string; fee_id: string; data: any }) => {
+      return await axiosWrapper({ url: `invoices/${id}/fee/${fee_id}/include-fee`, method: "PUT", data, apiKey: this.apiKey });
     },
     settleInvoice: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `invoices/${id}/settle`, method: "POST", apiKey: this.apiKey });
@@ -264,44 +264,44 @@ class Candle {
   };
 
   calendars = {
-    retrieveUserCalendarEvents: async ({ userId, month, year }: { userId: string; month: number; year: number }) => {
-      return await axiosWrapper({ url: `calendars/user/${userId}`, method: "GET", data: { month, year }, apiKey: this.apiKey });
+    retrieveUserCalendarEvents: async ({ user_id, month, year }: { user_id: string; month: number; year: number }) => {
+      return await axiosWrapper({ url: `calendars/user/${user_id}`, method: "GET", data: { month, year }, apiKey: this.apiKey });
     },
     addEventToCalendar: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `calendars/${id}/event`, method: "POST", data, apiKey: this.apiKey });
     },
-    retrieveEventFromCalendar: async ({ eventId }: { eventId: string }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}`, method: "GET", apiKey: this.apiKey });
+    retrieveEventFromCalendar: async ({ event_id}: { event_id: string }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}`, method: "GET", apiKey: this.apiKey });
     },
-    modifyEventInCalendar: async ({ eventId, data }: { eventId: string; data: any }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}`, method: "PUT", data, apiKey: this.apiKey });
+    modifyEventInCalendar: async ({ event_id, data }: { event_id: string; data: any }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeEventFromCalendar: async ({ eventId }: { eventId: string }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}`, method: "DELETE", apiKey: this.apiKey });
+    removeEventFromCalendar: async ({ event_id}: { event_id: string }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}`, method: "DELETE", apiKey: this.apiKey });
     },
-    addServiceToEvent: async ({ eventId, data }: { eventId: string; data: any }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}/service`, method: "POST", data, apiKey: this.apiKey });
+    addServiceToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}/service`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeServiceFromEvent: async ({ eventId, serviceId }: { eventId: string; serviceId: string }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}/service/${serviceId}`, method: "DELETE", apiKey: this.apiKey });
+    removeServiceFromEvent: async ({ event_id, service_id}: { event_id: string; service_id: string }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}/service/${service_id}`, method: "DELETE", apiKey: this.apiKey });
     },
-    addProductToEvent: async ({ eventId, data }: { eventId: string; data: any }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}/product`, method: "POST", data, apiKey: this.apiKey });
+    addProductToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}/product`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeProductFromEvent: async ({ eventId, productId }: { eventId: string; productId: string }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}/product/${productId}`, method: "DELETE", apiKey: this.apiKey });
+    removeProductFromEvent: async ({ event_id, product_id}: { event_id: string; product_id: string }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}/product/${product_id}`, method: "DELETE", apiKey: this.apiKey });
     },
-    addAttendeeToEvent: async ({ eventId, data }: { eventId: string; data: any }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}/attendee`, method: "POST", data, apiKey: this.apiKey });
+    addAttendeeToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}/attendee`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeAttendeeFromEvent: async ({ attendeeId }: { attendeeId: string }) => {
-      return await axiosWrapper({ url: `calendars/event/attendee/${attendeeId}`, method: "DELETE", apiKey: this.apiKey });
+    removeAttendeeFromEvent: async ({ attendee_id}: { attendee_id: string }) => {
+      return await axiosWrapper({ url: `calendars/event/attendee/${attendee_id}`, method: "DELETE", apiKey: this.apiKey });
     },
-    respondToEvent: async ({ eventId, data }: { eventId: string; data: any }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}/respond`, method: "PUT", data, apiKey: this.apiKey });
+    respondToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}/respond`, method: "PUT", data, apiKey: this.apiKey });
     },
-    addCommentToEvent: async ({ eventId, data }: { eventId: string; data: any }) => {
-      return await axiosWrapper({ url: `calendars/event/${eventId}/comment`, method: "POST", data, apiKey: this.apiKey });
+    addCommentToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
+      return await axiosWrapper({ url: `calendars/event/${event_id}/comment`, method: "POST", data, apiKey: this.apiKey });
     },
     setAvailabilityByDayOfWeek: async ({ dayOfWeek, data }: { dayOfWeek: string; data: any }) => {
       return await axiosWrapper({ url: `calendars/availability/dow/${dayOfWeek}`, method: "POST", data, apiKey: this.apiKey });
