@@ -11,8 +11,20 @@ class Candle {
     return new Candle(api_key);
   }
 
+  auth = {
+    signInWithOTP: async (data: { email: string } | { phone: string }) => {
+      return await axiosWrapper({ url: "auth/signin-otp", method: "POST", data, apiKey: this.apiKey });
+    },
+    verifyOTP: async (data: { email: string; token: string } | { phone: string; token: string }) => {
+      return await axiosWrapper({ url: "auth/verify-otp", method: "POST", data, apiKey: this.apiKey });
+    },
+  };
+
   platforms = {
-    checkCommunityMembership: async ({ user_id}: { user_id: string }) => {
+    retrievePlatform: async () => {
+      return await axiosWrapper({ url: `platforms`, method: "GET", apiKey: this.apiKey });
+    },
+    checkCommunityMembership: async ({ user_id }: { user_id: string }) => {
       return await axiosWrapper({ url: `platforms/user/${user_id}`, method: "GET", apiKey: this.apiKey });
     },
   };
@@ -42,13 +54,13 @@ class Candle {
     getClientSecret: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `users/${id}/client-secret`, method: "POST", apiKey: this.apiKey });
     },
-    removePaymentMethod: async ({ user_id, paymentMethod_id}: { user_id: string; paymentMethod_id: string }) => {
+    removePaymentMethod: async ({ user_id, paymentMethod_id }: { user_id: string; paymentMethod_id: string }) => {
       return await axiosWrapper({ url: `users/${user_id}/payment-methods/${paymentMethod_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     listPaymentMethods: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `users/${id}/payment-methods`, method: "GET", apiKey: this.apiKey });
     },
-    setDefaultPaymentMethod: async ({ id, paymentMethod_id}: { id: string; paymentMethod_id: string }) => {
+    setDefaultPaymentMethod: async ({ id, paymentMethod_id }: { id: string; paymentMethod_id: string }) => {
       return await axiosWrapper({ url: `users/${id}/payment-methods/${paymentMethod_id}/default`, method: "PUT", apiKey: this.apiKey });
     },
     authoriseFutureCharges: async ({ id }: { id: string }) => {
@@ -123,7 +135,7 @@ class Candle {
     createService: async (data: any) => {
       return await axiosWrapper({ url: `services`, method: "POST", data, apiKey: this.apiKey });
     },
-    listAllUserServices: async ({ user_id}: { user_id: string }) => {
+    listAllUserServices: async ({ user_id }: { user_id: string }) => {
       return await axiosWrapper({ url: `services/user/${user_id}`, method: "GET", apiKey: this.apiKey });
     },
     retrieveServiceById: async ({ id }: { id: string }) => {
@@ -162,7 +174,7 @@ class Candle {
     retrieveCartById: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `carts/${id}`, method: "GET", apiKey: this.apiKey });
     },
-    retrieveCartByUserId: async ({ user_id}: { user_id: string }) => {
+    retrieveCartByUserId: async ({ user_id }: { user_id: string }) => {
       return await axiosWrapper({ url: `carts/user/${user_id}`, method: "GET", apiKey: this.apiKey });
     },
     clearCart: async ({ id }: { id: string }) => {
@@ -171,7 +183,7 @@ class Candle {
     modifyCart: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `carts/${id}`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeItemFromCart: async ({ id, item_id}: { id: string; item_id: string }) => {
+    removeItemFromCart: async ({ id, item_id }: { id: string; item_id: string }) => {
       return await axiosWrapper({ url: `carts/${id}/item/${item_id}`, method: "DELETE", apiKey: this.apiKey });
     },
   };
@@ -198,13 +210,13 @@ class Candle {
     addItemToInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}/items`, method: "POST", data, apiKey: this.apiKey });
     },
-    createInvoiceFromCart: async ({ cart_id}: { cart_id: string }) => {
+    createInvoiceFromCart: async ({ cart_id }: { cart_id: string }) => {
       return await axiosWrapper({ url: `invoices/cart/${cart_id}`, method: "POST", apiKey: this.apiKey });
     },
-    createInvoiceFromSubscription: async ({ subscription_id}: { subscription_id: string }) => {
+    createInvoiceFromSubscription: async ({ subscription_id }: { subscription_id: string }) => {
       return await axiosWrapper({ url: `invoices/subscription/${subscription_id}`, method: "POST", apiKey: this.apiKey });
     },
-    createInvoiceFromCalendarEvent: async ({ calendarEvent_id}: { calendarEvent_id: string }) => {
+    createInvoiceFromCalendarEvent: async ({ calendarEvent_id }: { calendarEvent_id: string }) => {
       return await axiosWrapper({ url: `invoices/event/${calendarEvent_id}`, method: "POST", apiKey: this.apiKey });
     },
     retrieveUserReceivedInvoices: async () => {
@@ -222,19 +234,19 @@ class Candle {
     modifyInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeItemFromInvoice: async ({ id, item_id}: { id: string; item_id: string }) => {
+    removeItemFromInvoice: async ({ id, item_id }: { id: string; item_id: string }) => {
       return await axiosWrapper({ url: `invoices/${id}/item/${item_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     addSellerToInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}/seller`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeSellerFromInvoice: async ({ id, seller_id}: { id: string; seller_id: string }) => {
+    removeSellerFromInvoice: async ({ id, seller_id }: { id: string; seller_id: string }) => {
       return await axiosWrapper({ url: `invoices/${id}/seller/${seller_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     addBuyerToInvoice: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `invoices/${id}/buyer`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeBuyerFromInvoice: async ({ id, buyer_id}: { id: string; buyer_id: string }) => {
+    removeBuyerFromInvoice: async ({ id, buyer_id }: { id: string; buyer_id: string }) => {
       return await axiosWrapper({ url: `invoices/${id}/buyer/${buyer_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     modifyBuyerDueAmount: async ({ id, buyer_id, data }: { id: string; buyer_id: string; data: any }) => {
@@ -249,7 +261,7 @@ class Candle {
     updateFeesForInvoice: async ({ id }: { id: string }) => {
       return await axiosWrapper({ url: `invoices/${id}/fee`, method: "PUT", apiKey: this.apiKey });
     },
-    removeCustomFee: async ({ id, fee_id}: { id: string; fee_id: string }) => {
+    removeCustomFee: async ({ id, fee_id }: { id: string; fee_id: string }) => {
       return await axiosWrapper({ url: `invoices/${id}/fee/${fee_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     setFeeInclusion: async ({ id, fee_id, data }: { id: string; fee_id: string; data: any }) => {
@@ -270,31 +282,31 @@ class Candle {
     addEventToCalendar: async ({ id, data }: { id: string; data: any }) => {
       return await axiosWrapper({ url: `calendars/${id}/event`, method: "POST", data, apiKey: this.apiKey });
     },
-    retrieveEventFromCalendar: async ({ event_id}: { event_id: string }) => {
+    retrieveEventFromCalendar: async ({ event_id }: { event_id: string }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}`, method: "GET", apiKey: this.apiKey });
     },
     modifyEventInCalendar: async ({ event_id, data }: { event_id: string; data: any }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}`, method: "PUT", data, apiKey: this.apiKey });
     },
-    removeEventFromCalendar: async ({ event_id}: { event_id: string }) => {
+    removeEventFromCalendar: async ({ event_id }: { event_id: string }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     addServiceToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}/service`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeServiceFromEvent: async ({ event_id, service_id}: { event_id: string; service_id: string }) => {
+    removeServiceFromEvent: async ({ event_id, service_id }: { event_id: string; service_id: string }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}/service/${service_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     addProductToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}/product`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeProductFromEvent: async ({ event_id, product_id}: { event_id: string; product_id: string }) => {
+    removeProductFromEvent: async ({ event_id, product_id }: { event_id: string; product_id: string }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}/product/${product_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     addAttendeeToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {
       return await axiosWrapper({ url: `calendars/event/${event_id}/attendee`, method: "POST", data, apiKey: this.apiKey });
     },
-    removeAttendeeFromEvent: async ({ attendee_id}: { attendee_id: string }) => {
+    removeAttendeeFromEvent: async ({ attendee_id }: { attendee_id: string }) => {
       return await axiosWrapper({ url: `calendars/event/attendee/${attendee_id}`, method: "DELETE", apiKey: this.apiKey });
     },
     respondToEvent: async ({ event_id, data }: { event_id: string; data: any }) => {

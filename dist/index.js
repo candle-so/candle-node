@@ -40,7 +40,33 @@ var _axios_1 = require("./_axios");
 var Candle = /** @class */ (function () {
     function Candle(apiKey) {
         var _this = this;
+        this.auth = {
+            signInWithOTP: function (data) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "auth/signin-otp", method: "POST", data: data, apiKey: this.apiKey })];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
+            verifyOTP: function (data) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "auth/verify-otp", method: "POST", data: data, apiKey: this.apiKey })];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
+        };
         this.platforms = {
+            retrievePlatform: function () { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms", method: "GET", apiKey: this.apiKey })];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
             checkCommunityMembership: function (_a) {
                 var user_id = _a.user_id;
                 return __awaiter(_this, void 0, void 0, function () {

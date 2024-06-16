@@ -4,7 +4,22 @@ declare class Candle {
     static init({ api_key }: {
         api_key: string;
     }): Candle;
+    auth: {
+        signInWithOTP: (data: {
+            email: string;
+        } | {
+            phone: string;
+        }) => Promise<import("./_axios").iAxiosResponse>;
+        verifyOTP: (data: {
+            email: string;
+            token: string;
+        } | {
+            phone: string;
+            token: string;
+        }) => Promise<import("./_axios").iAxiosResponse>;
+    };
     platforms: {
+        retrievePlatform: () => Promise<import("./_axios").iAxiosResponse>;
         checkCommunityMembership: ({ user_id }: {
             user_id: string;
         }) => Promise<import("./_axios").iAxiosResponse>;
