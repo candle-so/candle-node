@@ -9,4 +9,4 @@ export interface iAxiosResponse {
     data?: any;
     error?: any;
 }
-export declare const axiosWrapper: ({ url, method, data, apiKey, }: iAxios) => Promise<iAxiosResponse>;
+export declare const axiosWrapper: ({ url, method, data, apiKey }: iAxios) => Promise<iAxiosResponse>;

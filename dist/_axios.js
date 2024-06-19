@@ -60,7 +60,7 @@ var axiosWrapper = function (_a) {
                     MODE = KEY_SPLIT[1];
                     _url = "".concat(CANDLE_API_URL, "/v1/").concat(url);
                     headers = {
-                        authorization: "Bearer ".concat(apiKey),
+                        api_key: apiKey,
                         "Content-Type": "application/json",
                         mode: MODE,
                     };

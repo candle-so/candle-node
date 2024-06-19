@@ -15,12 +15,7 @@ export interface iAxiosResponse {
   error?: any;
 }
 
-export const axiosWrapper = async ({
-  url,
-  method = "GET",
-  data = {},
-  apiKey,
-}: iAxios): Promise<iAxiosResponse> => {
+export const axiosWrapper = async ({ url, method = "GET", data = {}, apiKey }: iAxios): Promise<iAxiosResponse> => {
   const CANDLE_API_URL = process.env.CANDLE_API_URL || "https://api.candle.so";
 
   if (!url) throw new Error("url is not set");
@@ -29,10 +24,9 @@ export const axiosWrapper = async ({
   if (KEY_SPLIT.length !== 3) throw new Error("apiKey is not valid");
 
   const MODE = KEY_SPLIT[1];
-
   const _url = `${CANDLE_API_URL}/v1/${url}`;
   const headers = {
-    authorization: `Bearer ${apiKey}`,
+    api_key: apiKey,
     "Content-Type": "application/json",
     mode: MODE,
   };
