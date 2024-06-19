@@ -43,7 +43,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.axiosWrapper = void 0;
 var axios_1 = __importDefault(require("axios"));
 var axiosWrapper = function (_a) {
-    var url = _a.url, _b = _a.method, method = _b === void 0 ? "GET" : _b, _c = _a.data, data = _c === void 0 ? {} : _c, apiKey = _a.apiKey;
+    var url = _a.url, _b = _a.method, method = _b === void 0 ? "GET" : _b, _c = _a.data, data = _c === void 0 ? {} : _c, apiKey = _a.apiKey, accessToken = _a.accessToken;
     return __awaiter(void 0, void 0, void 0, function () {
         var CANDLE_API_URL, KEY_SPLIT, MODE, _url, headers, results, response, response, response, response, error_1;
         return __generator(this, function (_d) {
@@ -64,6 +64,8 @@ var axiosWrapper = function (_a) {
                         "Content-Type": "application/json",
                         mode: MODE,
                     };
+                    if (accessToken)
+                        headers["authorization"] = "Bearer ".concat(accessToken);
                     _d.label = 1;
                 case 1:
                     _d.trys.push([1, 10, , 11]);

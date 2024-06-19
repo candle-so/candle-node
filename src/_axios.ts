@@ -7,6 +7,7 @@ export interface iAxios {
   method?: "GET" | "POST" | "PUT" | "DELETE";
   data?: any;
   apiKey: string;
+  accessToken?: string;
 }
 
 export interface iAxiosResponse {
@@ -15,7 +16,7 @@ export interface iAxiosResponse {
   error?: any;
 }
 
-export const axiosWrapper = async ({ url, method = "GET", data = {}, apiKey }: iAxios): Promise<iAxiosResponse> => {
+export const axiosWrapper = async ({ url, method = "GET", data = {}, apiKey, accessToken }: iAxios): Promise<iAxiosResponse> => {
   const CANDLE_API_URL = process.env.CANDLE_API_URL || "https://api.candle.so";
 
   if (!url) throw new Error("url is not set");
@@ -25,11 +26,13 @@ export const axiosWrapper = async ({ url, method = "GET", data = {}, apiKey }: i
 
   const MODE = KEY_SPLIT[1];
   const _url = `${CANDLE_API_URL}/v1/${url}`;
-  const headers = {
+  const headers: any = {
     api_key: apiKey,
     "Content-Type": "application/json",
     mode: MODE,
   };
+
+  if (accessToken) headers["authorization"] = `Bearer ${accessToken}`;
 
   try {
     let results: any = {};
