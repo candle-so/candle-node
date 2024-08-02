@@ -42,14 +42,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.axiosWrapper = void 0;
 var axios_1 = __importDefault(require("axios"));
+function isServer() {
+    return typeof window === "undefined";
+}
 var axiosWrapper = function (_a) {
-    var url = _a.url, _b = _a.method, method = _b === void 0 ? "GET" : _b, _c = _a.data, data = _c === void 0 ? {} : _c, apiKey = _a.apiKey, accessToken = _a.accessToken;
+    var url = _a.url, _b = _a.method, method = _b === void 0 ? "GET" : _b, _c = _a.data, data = _c === void 0 ? {} : _c, file = _a.file, apiKey = _a.apiKey, accessToken = _a.accessToken, debug = _a.debug;
     return __awaiter(void 0, void 0, void 0, function () {
-        var CANDLE_API_URL, KEY_SPLIT, MODE, _url, headers, results, response, response, response, response, error_1;
+        var CANDLE_API_URL, KEY_SPLIT, MODE, _url, headers, results, formData, response, response, response, response, response, error_1;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    CANDLE_API_URL = process.env.CANDLE_API_URL || "https://api.candle.so";
+                    CANDLE_API_URL = debug ? "http://localhost:5000" : "https://api.candle.so";
                     if (!url)
                         throw new Error("url is not set");
                     if (!apiKey)
@@ -68,40 +71,52 @@ var axiosWrapper = function (_a) {
                         headers["authorization"] = "Bearer ".concat(accessToken);
                     _d.label = 1;
                 case 1:
-                    _d.trys.push([1, 10, , 11]);
+                    _d.trys.push([1, 12, , 13]);
                     results = {};
-                    if (!(method === "GET")) return [3 /*break*/, 3];
-                    return [4 /*yield*/, axios_1.default.get(_url, { headers: headers })];
+                    if (!(method === "UPLOAD")) return [3 /*break*/, 3];
+                    formData = new FormData();
+                    formData.append("media", file);
+                    return [4 /*yield*/, axios_1.default.post(_url, formData, {
+                            headers: headers,
+                            maxBodyLength: Infinity,
+                        })];
                 case 2:
                     response = _d.sent();
                     results = { status: response.status, data: response.data };
                     _d.label = 3;
                 case 3:
-                    if (!(method === "POST")) return [3 /*break*/, 5];
-                    return [4 /*yield*/, axios_1.default.post(_url, data, { headers: headers })];
+                    if (!(method === "GET")) return [3 /*break*/, 5];
+                    return [4 /*yield*/, axios_1.default.get(_url, { headers: headers })];
                 case 4:
                     response = _d.sent();
                     results = { status: response.status, data: response.data };
                     _d.label = 5;
                 case 5:
-                    if (!(method === "PUT")) return [3 /*break*/, 7];
-                    return [4 /*yield*/, axios_1.default.put(_url, data, { headers: headers })];
+                    if (!(method === "POST")) return [3 /*break*/, 7];
+                    return [4 /*yield*/, axios_1.default.post(_url, data, { headers: headers })];
                 case 6:
                     response = _d.sent();
                     results = { status: response.status, data: response.data };
                     _d.label = 7;
                 case 7:
-                    if (!(method === "DELETE")) return [3 /*break*/, 9];
-                    return [4 /*yield*/, axios_1.default.delete(_url, { headers: headers })];
+                    if (!(method === "PUT")) return [3 /*break*/, 9];
+                    return [4 /*yield*/, axios_1.default.put(_url, data, { headers: headers })];
                 case 8:
                     response = _d.sent();
                     results = { status: response.status, data: response.data };
                     _d.label = 9;
-                case 9: return [2 /*return*/, results];
+                case 9:
+                    if (!(method === "DELETE")) return [3 /*break*/, 11];
+                    return [4 /*yield*/, axios_1.default.delete(_url, { headers: headers })];
                 case 10:
+                    response = _d.sent();
+                    results = { status: response.status, data: response.data };
+                    _d.label = 11;
+                case 11: return [2 /*return*/, results];
+                case 12:
                     error_1 = _d.sent();
                     return [2 /*return*/, { status: error_1.response.status, error: error_1.response.data }];
-                case 11: return [2 /*return*/];
+                case 13: return [2 /*return*/];
             }
         });
     });

@@ -1,13 +1,14 @@
 /// <reference types="node" />
 
 import axios from "axios";
-
 export interface iAxios {
   url: string;
-  method?: "GET" | "POST" | "PUT" | "DELETE";
+  method?: "UPLOAD" | "GET" | "POST" | "PUT" | "DELETE";
   data?: any;
+  file?: any;
   apiKey: string;
   accessToken?: string;
+  debug?: boolean;
 }
 
 export interface iAxiosResponse {
@@ -16,8 +17,12 @@ export interface iAxiosResponse {
   error?: any;
 }
 
-export const axiosWrapper = async ({ url, method = "GET", data = {}, apiKey, accessToken }: iAxios): Promise<iAxiosResponse> => {
-  const CANDLE_API_URL = process.env.CANDLE_API_URL || "https://api.candle.so";
+function isServer() {
+  return typeof window === "undefined";
+}
+
+export const axiosWrapper = async ({ url, method = "GET", data = {}, file, apiKey, accessToken, debug }: iAxios): Promise<iAxiosResponse> => {
+  const CANDLE_API_URL = debug ? "http://localhost:5000" : "https://api.candle.so";
 
   if (!url) throw new Error("url is not set");
   if (!apiKey) throw new Error("apiKey is not set");
@@ -36,6 +41,16 @@ export const axiosWrapper = async ({ url, method = "GET", data = {}, apiKey, acc
 
   try {
     let results: any = {};
+
+    if (method === "UPLOAD") {
+      const formData = new FormData();
+      formData.append("media", file);
+      const response = await axios.post(_url, formData, {
+        headers,
+        maxBodyLength: Infinity,
+      });
+      results = { status: response.status, data: response.data };
+    }
 
     if (method === "GET") {
       const response = await axios.get(_url, { headers });

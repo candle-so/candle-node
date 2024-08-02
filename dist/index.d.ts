@@ -1,14 +1,14 @@
 declare class Candle {
     private apiKey;
-    constructor(apiKey: string);
-    static init({ api_key }: {
+    private debug?;
+    constructor(apiKey: string, debug?: boolean);
+    static init({ api_key, debug }: {
         api_key: string;
+        debug?: boolean;
     }): Candle;
     auth: {
-        signInWithOTP: (data: {
+        requestOtpViaEmail: (data: {
             email: string;
-        } | {
-            phone: string;
         }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
         verifyOTP: (data: {
             email: string;
@@ -17,360 +17,138 @@ declare class Candle {
             phone: string;
             token: string;
         }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        refreshSession: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
     };
     platforms: {
-        retrievePlatform: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        checkCommunityMembership: ({ user_id }: {
-            user_id: string;
+        getPlatformByDomain: (domain: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        getPlatformById: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        uploadPlatformImage: (id: string, file: File, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyPlatformById: (id: string, data: {
+            name: string;
+            description: string;
+            platformFee: string;
         }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listPlatformKeys: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listCommunityMembers: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        checkUserMembership: (userId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+    };
+    waitlists: {
+        addToWaitlist: (data: {
+            email: string;
+        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listWaitlist: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        grantWaitlistAccess: (waitlistId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
     };
     users: {
-        createUser: (data: {
-            email: string;
-            username: string;
-            bio: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveUser: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        generateUsername: (data: {
-            email: string;
-            name: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyUser: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        scheduleDeletion: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        connectStripe: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveStripeConnect: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        getClientSecret: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removePaymentMethod: ({ user_id, paymentMethod_id }: {
-            user_id: string;
-            paymentMethod_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listPaymentMethods: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        setDefaultPaymentMethod: ({ id, paymentMethod_id }: {
-            id: string;
-            paymentMethod_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        authoriseFutureCharges: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        deauthoriseFutureCharges: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-    };
-    contacts: {
-        addUserAsContact: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listContacts: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        searchContacts: (query: {
-            q: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        findContactByEmail: ({ email }: {
-            email: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyContact: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        deleteContact: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        specialPriceOnProduct: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        specialPriceOnService: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveUser: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyUser: (data: object, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        scheduleUserForDeletion: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        addUserImage: (data: object, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        addUserLink: (data: object, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeUserLink: (linkId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        connectUserBankAccounts: (data: object, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveUserBankAccounts: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        setUserClientSecret: (data: object, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        listUserPaymentMethods: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeUserPaymentMethod: (paymentMethodId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        setUserPaymentMethodAsDefault: (paymentMethodId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        createUser: (data: object) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveUserById: (id: string) => Promise<import("./_axios").iAxiosResponse>;
+        listUsers: () => Promise<import("./_axios").iAxiosResponse>;
+        modifyUserById: (id: string, data: object) => Promise<import("./_axios").iAxiosResponse>;
+        scheduleUserForDeletionById: (id: string) => Promise<import("./_axios").iAxiosResponse>;
+        addUserImageById: (id: string, data: object) => Promise<import("./_axios").iAxiosResponse>;
+        addUserLinkById: (id: string, data: object) => Promise<import("./_axios").iAxiosResponse>;
+        removeUserLinkById: (id: string, linkId: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveUserBankAccountsById: (id: string) => Promise<import("./_axios").iAxiosResponse>;
+        listUserPaymentMethodsById: (id: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeUserPaymentMethodById: (id: string, paymentMethodId: string) => Promise<import("./_axios").iAxiosResponse>;
+        setUserPaymentMethodAsDefaultById: (id: string, paymentMethodId: string) => Promise<import("./_axios").iAxiosResponse>;
     };
     products: {
         createProduct: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listAllProducts: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveProductById: ({ id }: {
-            id: string;
+        listProducts: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listUserProducts: (userId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveProductById: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyProductById: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        deleteProduct: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listProductPrices: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        addSeasonalPrice: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeSeasonalPrice: (id: string, priceId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        setSeasonalPriceUsage: (id: string, data: {
+            useSeasonalPrices: boolean;
         }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrievePricesForProduct: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listPricesForProduct: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        setSeasonalPricesForProduct: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyProduct: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        disableProduct: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        enableProduct: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        deleteProduct: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        enableProduct: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        disableProduct: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
     };
-    services: {
-        createService: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listAllUserServices: ({ user_id }: {
-            user_id: string;
+    contracts: {
+        createContract: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        createContractFromCart: (cartId: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listContracts: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listContractsByBuyer: (userId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listContractsBySeller: (userId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listAuthenticatedUserContracts: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveContractById: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        deleteContract: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyContractById: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        addItemToContract: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeItemFromContract: (id: string, itemId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        addBuyerToContract: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyBuyerDueAmount: (id: string, buyerId: string, data: {
+            dueAmount: number;
         }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveServiceById: ({ id }: {
-            id: string;
+        removeBuyerFromContract: (id: string, buyerId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        addSellerToContract: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifySellerOwedAmount: (id: string, sellerId: string, data: {
+            owedAmount: number;
         }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listPricesForService: ({ id }: {
-            id: string;
+        addFeeToContract: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeFeeFromContract: (id: string, feeId: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        updateContractFees: (id: string, data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        setFeeInclusion: (id: string, data: {
+            feeInclusion: boolean;
         }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addServiceAsParent: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        setSeasonalPricesForService: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyService: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        disableService: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        enableService: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        deleteService: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        settleContract: (id: string, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
     };
     carts: {
-        addProductToCart: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addServiceToCart: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveCartById: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveCartByUserId: ({ user_id }: {
-            user_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        clearCart: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyCart: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeItemFromCart: ({ id, item_id }: {
-            id: string;
-            item_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        addProductToUserCart: (productId: string, data: any, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyProductInUserCart: (productId: string, data: any, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveUserCart: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeProductFromUserCart: (productId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        clearUserCart: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
     };
     subscriptions: {
-        subscribeToService: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        pauseSubscription: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        resumeSubscription: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        unsubscribeFromService: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-    };
-    invoices: {
-        createInvoice: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addItemToInvoice: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        createInvoiceFromCart: ({ cart_id }: {
-            cart_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        createInvoiceFromSubscription: ({ subscription_id }: {
-            subscription_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        createInvoiceFromCalendarEvent: ({ calendarEvent_id }: {
-            calendarEvent_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveUserReceivedInvoices: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveUserSentInvoices: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveInvoiceById: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrievePublicInvoiceById: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyInvoice: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeItemFromInvoice: ({ id, item_id }: {
-            id: string;
-            item_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addSellerToInvoice: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeSellerFromInvoice: ({ id, seller_id }: {
-            id: string;
-            seller_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addBuyerToInvoice: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeBuyerFromInvoice: ({ id, buyer_id }: {
-            id: string;
-            buyer_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyBuyerDueAmount: ({ id, buyer_id, data }: {
-            id: string;
-            buyer_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        estimateFees: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addCustomFee: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        updateFeesForInvoice: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeCustomFee: ({ id, fee_id }: {
-            id: string;
-            fee_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        setFeeInclusion: ({ id, fee_id, data }: {
-            id: string;
-            fee_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        settleInvoice: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        updateInvoiceStatus: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        createSubscriptionFromContract: (contractId: string, data: any, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        listUserSubscriptions: (userId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveSubscription: (subscriptionId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        pauseSubscription: (subscriptionId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        resumeSubscription: (subscriptionId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        endSubscription: (subscriptionId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
     };
     calendars: {
-        retrieveUserCalendarEvents: ({ user_id, month, year }: {
-            user_id: string;
-            month: number;
-            year: number;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addEventToCalendar: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveEventFromCalendar: ({ event_id }: {
-            event_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyEventInCalendar: ({ event_id, data }: {
-            event_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeEventFromCalendar: ({ event_id }: {
-            event_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addServiceToEvent: ({ event_id, data }: {
-            event_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeServiceFromEvent: ({ event_id, service_id }: {
-            event_id: string;
-            service_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addProductToEvent: ({ event_id, data }: {
-            event_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeProductFromEvent: ({ event_id, product_id }: {
-            event_id: string;
-            product_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addAttendeeToEvent: ({ event_id, data }: {
-            event_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeAttendeeFromEvent: ({ attendee_id }: {
-            attendee_id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        respondToEvent: ({ event_id, data }: {
-            event_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        addCommentToEvent: ({ event_id, data }: {
-            event_id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        setAvailabilityByDayOfWeek: ({ dayOfWeek, data }: {
-            dayOfWeek: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        setAvailabilityByDateRange: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        setUnavailabilityByDateRange: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        linkGoogleCalendar: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        syncGoogleCalendars: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listUpcomingEvents: (query: {
-            limit: number;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveUserCalendar: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveUserAvailability: (userId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        addEventToCalendar: (data: any, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveEventFromCalendar: (eventId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyEventInCalendar: (eventId: string, data: any, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        removeEventFromCalendar: (eventId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        modifyUserAvailability: (data: any, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
     };
     transactions: {
-        retrieveUserRevenue: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveUserSpend: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrievePlatformRevenue: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+        listTransactions: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveBuyersRevenue: (userId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveSellersSpend: (userId: string, accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        getBiggestSpenders: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        getBiggestEarners: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        getPlatformVolume: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        getPlatformCartValue: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        getPlatformMRR: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
+        getPlatformARR: (accessToken: string) => Promise<import("./_axios").iAxiosResponse>;
     };
-    waitlists: {
-        addPersonToWaitlist: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        countPeopleInWaitlist: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listAllInWaitlist: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        removeFromWaitlist: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        grantAccessToPlatform: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-    };
-    webhooks: {
-        createWebhookEndpoint: (data: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        modifyWebhookEndpoint: ({ id, data }: {
-            id: string;
-            data: any;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        listAllWebhookEndpoints: (accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        deleteWebhookEndpoint: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
-        retrieveWebhookEndpoint: ({ id }: {
-            id: string;
-        }, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
+    utils: {
+        generateUsername: (text: string) => Promise<import("./_axios").iAxiosResponse>;
+        estimateFee: (amount: number) => Promise<import("./_axios").iAxiosResponse>;
+        uploadMedia: (file: any, accessToken?: string) => Promise<import("./_axios").iAxiosResponse>;
     };
 }
 export default Candle;
