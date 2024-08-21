@@ -101,26 +101,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            listPlatformKeys: function (id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            checkCommunityMembership: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms/".concat(id, "/keys"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            listCommunityMembers: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms/community", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            checkUserMembership: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms/community/user/".concat(userId), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms/community/user/".concat(user_id), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -136,18 +120,26 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            listWaitlist: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            countPeopleInTheWaitlist: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "waitlists", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "waitlists/count", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            grantWaitlistAccess: function (waitlistId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            grantAccessToPlatform: function (waitlist_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "waitlists/".concat(waitlistId, "/grant"), method: "POST", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "waitlists/".concat(waitlist_id, "/grant"), method: "POST", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
+            removeFromTheWaitlist: function (waitlist_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "waitlists/".concat(waitlist_id, "/remove"), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -195,34 +187,26 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeUserLink: function (linkId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeUserLink: function (link_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/link/".concat(linkId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/link/".concat(link_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            connectUserBankAccounts: function (data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            connectUserBankAccount: function (data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/bank_accounts", method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/bank_account", method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            retrieveUserBankAccounts: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            setUserClientSecret: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/bank_accounts", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            setUserClientSecret: function (data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/client_secret", method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/client_secret", method: "POST", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -235,18 +219,18 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeUserPaymentMethod: function (paymentMethodId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeUserPaymentMethod: function (paymentMethod_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/payment_methods/".concat(paymentMethodId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/payment_methods/".concat(paymentMethod_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            setUserPaymentMethodAsDefault: function (paymentMethodId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            setUserPaymentMethodAsDefault: function (paymentMethod_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/payment_methods/".concat(paymentMethodId, "/default"), method: "PUT", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/auth/payment_methods/".concat(paymentMethod_id, "/default"), method: "PUT", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -307,18 +291,18 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeUserLinkById: function (id, linkId) { return __awaiter(_this, void 0, void 0, function () {
+            removeUserLinkById: function (id, link_id) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/link/").concat(linkId), method: "DELETE", apiKey: this.apiKey, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/link/").concat(link_id), method: "DELETE", apiKey: this.apiKey, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            retrieveUserBankAccountsById: function (id) { return __awaiter(_this, void 0, void 0, function () {
+            retrieveUserBankAccountById: function (id) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/bank_accounts"), method: "GET", apiKey: this.apiKey, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/bank_account"), method: "GET", apiKey: this.apiKey, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -331,18 +315,18 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeUserPaymentMethodById: function (id, paymentMethodId) { return __awaiter(_this, void 0, void 0, function () {
+            removeUserPaymentMethodById: function (id, paymentMethod_id) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/payment_methods/").concat(paymentMethodId), method: "DELETE", apiKey: this.apiKey, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/payment_methods/").concat(paymentMethod_id), method: "DELETE", apiKey: this.apiKey, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            setUserPaymentMethodAsDefaultById: function (id, paymentMethodId) { return __awaiter(_this, void 0, void 0, function () {
+            setUserPaymentMethodAsDefaultById: function (id, paymentMethod_id) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/payment_methods/").concat(paymentMethodId, "/default"), method: "PUT", apiKey: this.apiKey, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "users/".concat(id, "/payment_methods/").concat(paymentMethod_id, "/default"), method: "PUT", apiKey: this.apiKey, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -366,10 +350,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            listUserProducts: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            listUserProducts: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "products/user/".concat(userId), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "products/user/".concat(user_id), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -414,10 +398,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeSeasonalPrice: function (id, priceId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeSeasonalPrice: function (id, price_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "products/".concat(id, "/prices/").concat(priceId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "products/".concat(id, "/prices/").concat(price_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -457,10 +441,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            createContractFromCart: function (cartId, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            createContractFromCart: function (cart_id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/cart/".concat(cartId), method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/cart/".concat(cart_id), method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -473,18 +457,18 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            listContractsByBuyer: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            listContractsByBuyer: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/user/".concat(userId, "/buyer"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/user/".concat(user_id, "/buyer"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            listContractsBySeller: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            listContractsBySeller: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/user/".concat(userId, "/seller"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/user/".concat(user_id, "/seller"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -529,10 +513,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeItemFromContract: function (id, itemId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeItemFromContract: function (id, item_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/item/").concat(itemId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/item/").concat(item_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -545,18 +529,18 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            modifyBuyerDueAmount: function (id, buyerId, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            modifyBuyerDueAmount: function (id, buyer_id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/buyer/").concat(buyerId, "/due"), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/buyer/").concat(buyer_id, "/due"), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            removeBuyerFromContract: function (id, buyerId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeBuyerFromContract: function (id, buyer_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/buyer/").concat(buyerId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/buyer/").concat(buyer_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -569,10 +553,18 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            modifySellerOwedAmount: function (id, sellerId, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            modifySellerOwedAmount: function (id, seller_id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/seller/").concat(sellerId, "/owed"), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/seller/").concat(seller_id, "/owed"), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
+            removeSellerFromContract: function (id, seller_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/seller/").concat(seller_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -585,18 +577,18 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeFeeFromContract: function (id, feeId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeFeeFromContract: function (id, fee_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/fee/").concat(feeId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/fee/").concat(fee_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            updateContractFees: function (id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            modifyContractFees: function (id, fee_id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/fee"), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/fee/").concat(fee_id), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -609,6 +601,14 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
+            sendContract: function (id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/send"), method: "POST", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
             settleContract: function (id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
@@ -617,21 +617,21 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-        };
-        // carts
-        this.carts = {
-            addProductToUserCart: function (productId, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            rebalanceAContract: function (id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/auth/products/".concat(productId), method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "contracts/".concat(id, "/sync"), method: "PUT", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            modifyProductInUserCart: function (productId, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+        };
+        // carts
+        this.carts = {
+            addProductToUserCart: function (product_id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/auth/products/".concat(productId), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/auth/product/".concat(product_id), method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -644,10 +644,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            removeProductFromUserCart: function (productId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeItemFromUserCart: function (cart_item_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/auth/products/".concat(productId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "carts/auth/item/".concat(cart_item_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -663,50 +663,50 @@ var Candle = /** @class */ (function () {
         };
         // subscriptions
         this.subscriptions = {
-            createSubscriptionFromContract: function (contractId, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            createSubscriptionFromContract: function (contract_id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/contract/".concat(contractId), method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/auth/contract/".concat(contract_id), method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            listUserSubscriptions: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            listUserSubscriptions: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/user/".concat(userId), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/user/".concat(user_id), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            retrieveSubscription: function (subscriptionId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            retrieveSubscription: function (subscription_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/".concat(subscriptionId), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/".concat(subscription_id), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            pauseSubscription: function (subscriptionId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            pauseSubscription: function (subscription_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/".concat(subscriptionId, "/pause"), method: "PUT", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/".concat(subscription_id, "/pause"), method: "PUT", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            resumeSubscription: function (subscriptionId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            resumeSubscription: function (subscription_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/".concat(subscriptionId, "/resume"), method: "PUT", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/auth/".concat(subscription_id, "/resume"), method: "PUT", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            endSubscription: function (subscriptionId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            endSubscription: function (subscription_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/".concat(subscriptionId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "subscriptions/auth/".concat(subscription_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -714,6 +714,14 @@ var Candle = /** @class */ (function () {
         };
         // calendars
         this.calendars = {
+            setUserAvailability: function (data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/auth/availability", method: "POST", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); },
             retrieveUserCalendar: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
@@ -722,10 +730,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            retrieveUserAvailability: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            retrieveUserAvailability: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/user/".concat(userId, "/availability"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/user/".concat(user_id, "/availability"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -738,26 +746,26 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            retrieveEventFromCalendar: function (eventId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            retrieveCalendarEvent: function (event_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/auth/event/".concat(eventId), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/auth/event/".concat(event_id), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            modifyEventInCalendar: function (eventId, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            modifyCalendarEvent: function (event_id, data, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/auth/event/".concat(eventId), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/auth/event/".concat(event_id), method: "PUT", data: data, apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            removeEventFromCalendar: function (eventId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            removeCalendarEvent: function (event_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/auth/event/".concat(eventId), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "calendars/auth/event/".concat(event_id), method: "DELETE", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -773,74 +781,18 @@ var Candle = /** @class */ (function () {
         };
         // transactions
         this.transactions = {
-            listTransactions: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            retrieveUsersRevenue: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/user/".concat(user_id, "/revenue"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
             }); },
-            retrieveBuyersRevenue: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            retrieveUserSpend: function (user_id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/user/".concat(userId, "/revenue"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            retrieveSellersSpend: function (userId, accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/user/".concat(userId, "/spend"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            getBiggestSpenders: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/spenders", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            getBiggestEarners: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/earners", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            getPlatformVolume: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/volume", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            getPlatformCartValue: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/cart", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            getPlatformMRR: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/mrr", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
-                });
-            }); },
-            getPlatformARR: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/arr", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "transactions/user/".concat(user_id, "/spend"), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
@@ -856,7 +808,7 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            estimateFee: function (amount) { return __awaiter(_this, void 0, void 0, function () {
+            estimateFeeForANumber: function (amount) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "utils/estimate/fee", method: "POST", data: { amount: amount }, apiKey: this.apiKey, debug: this.debug })];
