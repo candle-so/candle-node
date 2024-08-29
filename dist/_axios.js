@@ -46,13 +46,13 @@ function isServer() {
     return typeof window === "undefined";
 }
 var axiosWrapper = function (_a) {
-    var url = _a.url, _b = _a.method, method = _b === void 0 ? "GET" : _b, _c = _a.data, data = _c === void 0 ? {} : _c, file = _a.file, apiKey = _a.apiKey, accessToken = _a.accessToken, debug = _a.debug;
+    var url = _a.url, _b = _a.method, method = _b === void 0 ? "GET" : _b, _c = _a.data, data = _c === void 0 ? {} : _c, file = _a.file, apiKey = _a.apiKey, accessToken = _a.accessToken, host = _a.host, debug = _a.debug;
     return __awaiter(void 0, void 0, void 0, function () {
         var CANDLE_API_URL, KEY_SPLIT, MODE, _url, headers, results, formData, response, response, response, response, response, error_1;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    CANDLE_API_URL = debug ? "http://localhost:5000" : "https://api.candle.so";
+                    CANDLE_API_URL = debug ? "http://localhost:5000" : host || "https://api.candle.so";
                     if (!url)
                         throw new Error("url is not set");
                     if (!apiKey)

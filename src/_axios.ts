@@ -8,6 +8,7 @@ export interface iAxios {
   file?: any;
   apiKey: string;
   accessToken?: string;
+  host?: string;
   debug?: boolean;
 }
 
@@ -21,8 +22,8 @@ function isServer() {
   return typeof window === "undefined";
 }
 
-export const axiosWrapper = async ({ url, method = "GET", data = {}, file, apiKey, accessToken, debug }: iAxios): Promise<iAxiosResponse> => {
-  const CANDLE_API_URL = debug ? "http://localhost:5000" : "https://api.candle.so";
+export const axiosWrapper = async ({ url, method = "GET", data = {}, file, apiKey, accessToken, host, debug }: iAxios): Promise<iAxiosResponse> => {
+  const CANDLE_API_URL = debug ? "http://localhost:5000" : host || "https://api.candle.so";
 
   if (!url) throw new Error("url is not set");
   if (!apiKey) throw new Error("apiKey is not set");

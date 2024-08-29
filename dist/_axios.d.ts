@@ -5,6 +5,7 @@ export interface iAxios {
     file?: any;
     apiKey: string;
     accessToken?: string;
+    host?: string;
     debug?: boolean;
 }
 export interface iAxiosResponse {
@@ -12,4 +13,4 @@ export interface iAxiosResponse {
     data?: any;
     error?: any;
 }
-export declare const axiosWrapper: ({ url, method, data, file, apiKey, accessToken, debug }: iAxios) => Promise<iAxiosResponse>;
+export declare const axiosWrapper: ({ url, method, data, file, apiKey, accessToken, host, debug }: iAxios) => Promise<iAxiosResponse>;
