@@ -1,8 +1,7 @@
 declare class Candle {
     private apiKey;
     private debug?;
-    private host?;
-    constructor(apiKey: string, debug?: boolean, host?: string);
+    constructor(apiKey: string, debug?: boolean);
     static init({ api_key, debug, host }: {
         api_key: string;
         debug?: boolean;
