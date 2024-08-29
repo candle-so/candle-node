@@ -9,7 +9,7 @@ class Candle {
     this.debug = debug;
   }
 
-  static init({ api_key, debug, host }: { api_key: string; debug?: boolean; host?: string }) {
+  static init({ api_key, debug }: { api_key: string; debug?: boolean }) {
     return new Candle(api_key, debug);
   }
   // auth
