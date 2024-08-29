@@ -11,8 +11,8 @@ class Candle {
     this.host = host;
   }
 
-  static init({ api_key, debug }: { api_key: string; debug?: boolean }) {
-    return new Candle(api_key, debug);
+  static init({ api_key, debug, host }: { api_key: string; debug?: boolean; host?: string }) {
+    return new Candle(api_key, debug, host);
   }
   // auth
   auth = {

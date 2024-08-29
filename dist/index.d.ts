@@ -3,9 +3,10 @@ declare class Candle {
     private debug?;
     private host?;
     constructor(apiKey: string, debug?: boolean, host?: string);
-    static init({ api_key, debug }: {
+    static init({ api_key, debug, host }: {
         api_key: string;
         debug?: boolean;
+        host?: string;
     }): Candle;
     auth: {
         requestOtpViaEmail: (data: {

@@ -830,8 +830,8 @@ var Candle = /** @class */ (function () {
         this.host = host;
     }
     Candle.init = function (_a) {
-        var api_key = _a.api_key, debug = _a.debug;
-        return new Candle(api_key, debug);
+        var api_key = _a.api_key, debug = _a.debug, host = _a.host;
+        return new Candle(api_key, debug, host);
     };
     return Candle;
 }());
