@@ -21,7 +21,7 @@ declare class Candle {
     };
     platforms: {
         getPlatformByDomain: (domain: string, accessToken?: string | undefined) => Promise<import("./_axios").iAxiosResponse>;
-        getPlatformById: (id: string, accessToken?: string | undefined) => Promise<import("./_axios").iAxiosResponse>;
+        retrieveAPlatform: (accessToken?: string | undefined) => Promise<import("./_axios").iAxiosResponse>;
         uploadPlatformImage: (id: string, file: File, accessToken?: string | undefined) => Promise<import("./_axios").iAxiosResponse>;
         modifyPlatformById: (id: string, data: {
             name: string;

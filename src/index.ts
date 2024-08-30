@@ -30,8 +30,8 @@ class Candle {
     getPlatformByDomain: async (domain: string, accessToken?: string | undefined) => {
       return await axiosWrapper({ url: `platforms/domains/${domain}`, method: "GET", apiKey: this.apiKey, accessToken, debug: this.debug });
     },
-    getPlatformById: async (id: string, accessToken?: string | undefined) => {
-      return await axiosWrapper({ url: `platforms/${id}`, method: "GET", apiKey: this.apiKey, accessToken, debug: this.debug });
+    retrieveAPlatform: async (accessToken?: string | undefined) => {
+      return await axiosWrapper({ url: "platforms", method: "GET", apiKey: this.apiKey, accessToken, debug: this.debug });
     },
     uploadPlatformImage: async (id: string, file: File, accessToken?: string | undefined) => {
       return await axiosWrapper({ url: `platforms/${id}/image`, method: "POST", file, apiKey: this.apiKey, accessToken, debug: this.debug });

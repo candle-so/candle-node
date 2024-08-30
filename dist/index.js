@@ -77,10 +77,10 @@ var Candle = /** @class */ (function () {
                     }
                 });
             }); },
-            getPlatformById: function (id, accessToken) { return __awaiter(_this, void 0, void 0, function () {
+            retrieveAPlatform: function (accessToken) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms/".concat(id), method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
+                        case 0: return [4 /*yield*/, (0, _axios_1.axiosWrapper)({ url: "platforms", method: "GET", apiKey: this.apiKey, accessToken: accessToken, debug: this.debug })];
                         case 1: return [2 /*return*/, _a.sent()];
                     }
                 });
